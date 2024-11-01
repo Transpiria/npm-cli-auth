@@ -14,7 +14,7 @@ function increment_version() {
     for segment in ${last_version//./ }; do
         segments=$((${segments} + 1))
         if [[ "${segments}" -lt "${increment_segment}" ]]; then
-            version+="${segment}"
+            version+="${segment}".
         elif [[ "${segments}" == "${increment_segment}" ]]; then
             version+="$((${segment} + 1))"
         else
