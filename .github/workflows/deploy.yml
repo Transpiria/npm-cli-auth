@@ -14,9 +14,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@4
+              uses: actions/checkout@v4
             - name: Setup node
-              uses: actions/setup-node@4
+              uses: actions/setup-node@v4
               with:
                 node-version: 20
                 cache: npm
@@ -30,7 +30,7 @@ jobs:
               working-directory: artifacts
               run: npm pack
             - name: Persist artifacts
-              uses: actions/upload-artifacts@4
+              uses: actions/upload-artifacts@v4
               with:
                 name: artifacts
                 path: npm-cli-auth-*.tgz
