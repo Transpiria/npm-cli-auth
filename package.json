@@ -5,7 +5,7 @@
     "main": "npm-cli-auth.js",
     "scripts": {
         "build": "tsc",
-        "build-ci": "tsc && cp src/bin artifacts/"
+        "build-ci": "tsc"
     },
     "repository": {
         "type": "git",
