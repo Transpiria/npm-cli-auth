@@ -1,0 +1,37 @@
+{
+    "name": "npm-cli-auth",
+    "version": "0.0.0",
+    "description": "Authenticates with npm from the cli",
+    "main": "npm-cli-auth.js",
+    "scripts": {
+        "build": "tsc",
+        "build-ci": "tsc && cp src/bin artifacts/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/transpiria/npm-cli-auth.git"
+    },
+    "keywords": [
+        "npm",
+        "cli",
+        "login",
+        "auth"
+    ],
+    "author": "Transpiria",
+    "license": "Unlicense",
+    "bugs": {
+        "url": "https://github.com/transpiria/npm-cli-auth/issues"
+    },
+    "homepage": "https://github.com/transpiria/npm-cli-auth#readme",
+    "devDependencies": {
+        "@types/node": "^22.5.5",
+        "typescript": "^5.6.3"
+    },
+    "files": [
+        "dist",
+        "bin"
+    ],
+    "bin": {
+        "npm-cli-auth": "bin/npm-cli-auth"
+    }
+}

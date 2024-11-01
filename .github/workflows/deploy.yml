@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@4
+            - name: Setup node
+              uses: actions/setup-node@4
+              with:
+                node-version: 20
+                cache: npm
+            - name: Restore dependencies
+              run: npm ci
+            - uses: ./.github/actions/configure
+              id: config
+            - name: Build
+              run: npm run build-ci
+            - name: Package
+              working-directory: artifacts
+              run: npm pack
+            - name: Persist artifacts
+              uses: actions/upload-artifacts@4
+              with:
+                name: artifacts
+                path: npm-cli-auth-*.tgz
+            - name: publish
+              env:
+                NPM_USER: ${{env.NPM_USER}}
+                NPM_PASSWORD: ${{secrets.NPM_PASSWORD}}
+              run: |
+                npx --yes npm-cli-auth
+                npm publish $(ls *.tgz)
+            - name: Create release
+              run: gh release create ${{steps.config.outputs.version}} --generate-notes --title ${{steps.config.outputs.version}}

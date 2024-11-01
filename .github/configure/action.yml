@@ -1,0 +1,15 @@
+name: Configure version
+description: configured package.json version
+
+outputs:
+    version:
+        description: Determined version
+        value: ${{steps.configure.outputs.version}}
+
+runs:
+    using: composite
+    steps:
+        - name: Configure
+          id: configure
+          run: ${{github.action_path}}/configure.sh
+          shell: bash
